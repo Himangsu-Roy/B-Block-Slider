@@ -1,23 +1,39 @@
+import { useBlockProps } from "@wordpress/block-editor";
+import Settings from "./Settings/Settings";
+import Style from "../Common/Style";
+import BBlockSlider from "../BBlockSlider/BBlockSlider";
+import { withSelect } from "@wordpress/data";
 
-import { useBlockProps } from '@wordpress/block-editor';
+const Edit = (props) => {
+  const { attributes, setAttributes, clientId, isSelected, device } = props;
+  const { slides } = attributes;
 
-import Settings from './Settings/Settings';
-import Style from '../Common/Style';
-
-const Edit = props => {
-	const { attributes, setAttributes, clientId } = props;
-	const { purposeType } = attributes;
-
-	return (
+  return (
     <>
-      <Settings {...{ attributes, setAttributes }} />
+      <Settings {...{ attributes, setAttributes, device }} />
 
-      <div {...useBlockProps()} id={`bBlocksSlider-${clientId}`}>
-        <Style attributes={attributes} id={`bBlocksSlider-${clientId}`} />
+      <div {...useBlockProps()} id={`bBlocksBBlockSlider-${clientId}`}>
+        <Style
+          device={device}
+          attributes={attributes}
+          id={`bBlocksBBlockSlider-${clientId}`}
+        />
 
-		
+        {!isSelected && <div className="bPlBlockBeforeSelect"></div>}
+
+        <BBlockSlider
+          setAttributes={setAttributes}
+          slides={slides}
+          attributes={attributes}
+        />
       </div>
     </>
   );
-}
-export default Edit;
+};
+
+export default withSelect((select) => {
+  const { getDeviceType } = select("core/editor");
+  return {
+    device: getDeviceType()?.toLowerCase(),
+  };
+})(Edit);

@@ -1,19 +1,24 @@
-import { createRoot } from 'react-dom/client';
-import './style.scss';
-import Style from './Components/Common/Style';
-import BlockName from './Components/Frontend/BlockName';
+import { createRoot } from "react-dom/client";
+import "./style.scss";
+import Style from "./Components/Common/Style";
+import BlockName from "./Components/Frontend/BlockName";
+import BBlockSlider from "./Components/BBlockSlider/BBlockSlider";
 
-document.addEventListener('DOMContentLoaded', () => {
-	const blockNameEls = document.querySelectorAll('.wp-block-b-blocks-slider');
-	blockNameEls.forEach(blockNameEl => {
-		const attributes = JSON.parse(blockNameEl.dataset.attributes);
+document.addEventListener("DOMContentLoaded", () => {
+  const blockNameEls = document.querySelectorAll(
+    ".wp-block-b-blocks-b-block-slider"
+  );
+  blockNameEls.forEach((blockNameEl) => {
+    const attributes = JSON.parse(blockNameEl.dataset.attributes);
 
-		createRoot(blockNameEl).render(<>
-			<Style attributes={attributes} id={blockNameEl.id} />
+   
+    createRoot(blockNameEl).render(
+      <>
+        <Style attributes={attributes} id={blockNameEl.id} />
+        <BBlockSlider attributes={attributes} id={blockNameEl.id} />
+      </>
+    );
 
-			<BlockName attributes={attributes} />
-		</>);
-
-		blockNameEl?.removeAttribute('data-attributes');
-	});
+    blockNameEl?.removeAttribute("data-attributes");
+  });
 });

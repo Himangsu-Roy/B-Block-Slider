@@ -10,7 +10,7 @@ import { generalStyleTabs } from "../../../utils/options";
 import General from "./General/General";
 import Style from "./Style/Style";
 
-const Settings = ({ attributes, setAttributes }) => {
+const Settings = ({ attributes, setAttributes, device }) => {
   const { alignment } = attributes;
 
   return (
@@ -28,7 +28,7 @@ const Settings = ({ attributes, setAttributes }) => {
         </div>
 
         <TabPanel
-          className="bPlTabPanel wp-block-b-blocks-test-purpose"
+          className="bPlTabPanel wp-block-b-blocks-b-block-slider"
           activeClass="activeTab"
           tabs={generalStyleTabs}
           onSelect={tabController}
@@ -39,6 +39,7 @@ const Settings = ({ attributes, setAttributes }) => {
                 <General
                   attributes={attributes}
                   setAttributes={setAttributes}
+                  device={device}
                 />
               )}
 

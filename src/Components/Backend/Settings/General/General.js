@@ -1,27 +1,353 @@
 import { __ } from "@wordpress/i18n";
-import { PanelBody, SelectControl } from "@wordpress/components";
+import {
+  PanelBody,
+  SelectControl,
+  __experimentalInputControl as InputControl,
+  ToggleControl,
+  TextareaControl,
+  __experimentalSpacer as Spacer,
+  Button,
+  __experimentalUnitControl as UnitControl,
+  __experimentalAlignmentMatrixControl as AlignmentMatrixControl,
+  PanelRow,
+} from "@wordpress/components";
+
 import { purposeTypeOptions } from "../../../../utils/options";
 import { updateData } from "../../../../utils/functions";
+import { InlineMediaUpload } from "../../../../../../bpl-tools/Components/MediaControl/MediaControl";
+import {
+  perUnit,
+  pxUnit,
+  vhUnit,
+} from "../../../../../../bpl-tools/utils/options";
+import {
+  Device,
+  IconControl,
+  IconLibrary,
+  ItemsPanel,
+  Label,
+} from "../../../../../../bpl-tools/Components";
+import Items from "../../Panel/Panel";
 
-const General = ({ attributes, setAttributes }) => {
-  const { purposeType } = attributes;
+const General = ({ attributes, setAttributes, device }) => {
+  console.log(device);
+
+  const {
+    slides,
+    titleTag,
+    layoutSettings,
+    iconLibraryLabel,
+    nextArrow,
+    prevArrow,
+    selectedIcon,
+    slideOptions,
+    paginationStyles,
+  } = attributes;
+
+  const {
+    effect,
+    autoplaySpeed,
+    autoplay,
+    arrows,
+    dragOnMouse,
+    slidesToScroll,
+  } = slideOptions;
+
+  console.log(layoutSettings.layoutWidth, "device");
 
   return (
-    <PanelBody
-      className="bPlPanelBody"
-      title={__("Slides", "b-blocks")}
-      initialOpen={false}
-    >
-      {/* <SelectControl
-      
-        label={__('Purpose', 'b-blocks')}
-        labelPosition='left'
-        value={purposeType}
-        options={purposeTypeOptions}
-        onChange={(v) => setAttributes({ purposeType: updateData(purposeType, v) })}
-      />
-      <small className="selectHelp">If you want change your purpose?Then you select purpose here.</small> */}
-    </PanelBody>
+    <>
+      <PanelBody
+        className="bPlPanelBody"
+        title={__("Slides", "b-blocks")}
+        initialOpen={false}
+      >
+        <ItemsPanel
+          {...{ attributes, setAttributes }}
+          arrKey="slides"
+          newItem={{
+            image: "XXX",
+            alt: "Alt 1",
+            title: "Slide 1",
+            description: "Description 1",
+            buttonLabel: "",
+            buttonLink: "",
+            buttonTarget: true,
+          }}
+          ItemSettings={Items}
+          itemLabel="Slide"
+          design="sortable"
+        />
+      </PanelBody>
+
+      <PanelBody
+        className="bPlPanelBody"
+        title={__("Title Tag", "b-blocks")}
+        initialOpen={false}
+      >
+        {/* Title tag */}
+        <SelectControl
+          label={__("Tag", "b-blocks")}
+          value={titleTag}
+          options={[
+            { label: "H1", value: "h1" },
+            { label: "H2", value: "h2" },
+            { label: "H3", value: "h3" },
+            { label: "H4", value: "h4" },
+            { label: "H5", value: "h5" },
+            { label: "H6", value: "h6" },
+          ]}
+          onChange={(value) => setAttributes({ titleTag: value })}
+        />
+      </PanelBody>
+
+      {/* Layout Settings */}
+
+      <PanelBody
+        className="bPlPanelBody"
+        title={__("Layout Settings", "b-blocks")}
+        initialOpen={false}
+      >
+        <UnitControl
+          label="Left/Right Content Gap"
+          value={layoutSettings.leftRightTextGap}
+          onChange={(value) => {
+            setAttributes({
+              layoutSettings: updateData(
+                layoutSettings,
+                value,
+                "leftRightTextGap"
+              ),
+            });
+          }}
+        />
+
+        <SelectControl
+          label={__("Slide Direction", "b-blocks")}
+          value={layoutSettings.slideDirection}
+          options={[
+            { label: "Horizontal", value: "horizontal" },
+            { label: "Vertical", value: "vertical" },
+          ]}
+          onChange={(value) => {
+            setAttributes({
+              layoutSettings: updateData(
+                layoutSettings,
+                value,
+                "slideDirection"
+              ),
+            });
+          }}
+        />
+
+        <PanelRow>
+          <Label className="">Width</Label>
+          <Device />
+        </PanelRow>
+        <UnitControl
+          label=""
+          value={layoutSettings.layoutWidth[device]}
+          units={[perUnit(), pxUnit(), vhUnit()]}
+          onChange={(value) => {
+            setAttributes({
+              layoutSettings: updateData(
+                layoutSettings,
+                value,
+                "layoutWidth",
+                device
+              ),
+            });
+          }}
+        />
+
+        <PanelRow>
+          <Label className="">Height</Label>
+          <Device />
+        </PanelRow>
+        <UnitControl
+          label=""
+          value={layoutSettings.layoutHeight[device]}
+          units={[perUnit(), pxUnit(), vhUnit()]}
+          onChange={(value) => {
+            setAttributes({
+              layoutSettings: updateData(
+                layoutSettings,
+                value,
+                "layoutHeight",
+                device
+              ),
+            });
+          }}
+        />
+
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            gap: "10px",
+          }}
+        >
+          <p>Content Position</p>
+          <AlignmentMatrixControl
+            label="Content Position"
+            value={layoutSettings.contentPosition}
+            onChange={(value) => {
+              setAttributes({
+                layoutSettings: updateData(
+                  layoutSettings,
+                  value,
+                  "contentPosition"
+                ),
+              });
+            }}
+          />
+        </div>
+
+        {/* Icon Selectors for Arrows */}
+        <IconLibrary
+          label="Select Previous Arrow Icon"
+          value={prevArrow}
+          onChange={(icon) => setAttributes({ prevArrow: icon })}
+        />
+        <Spacer />
+        <IconLibrary
+          label="Select Next Arrow Icon"
+          value={nextArrow}
+          onChange={(icon) => setAttributes({ nextArrow: icon })}
+        />
+      </PanelBody>
+
+      <PanelBody
+        className="bPlPanelBody"
+        title={__("Slider Options", "b-blocks")}
+        initialOpen={false}
+      >
+        <SelectControl
+          label={__("Animation/Effect", "b-blocks")}
+          value={slideOptions.effect}
+          options={[
+            { label: "Slide", value: "slide" },
+            { label: "Fade", value: "fade" },
+            { label: "Cube", value: "cube" },
+            { label: "Coverflow", value: "coverflow" },
+            { label: "Flip", value: "flip" },
+          ]}
+          onChange={(value) => {
+            setAttributes({
+              slideOptions: updateData(slideOptions, value, "effect"),
+            });
+          }}
+        />
+
+        <ToggleControl
+          label="Autoplay"
+          checked={autoplay}
+          onChange={(value) => {
+            setAttributes({
+              slideOptions: updateData(slideOptions, value, "autoplay"),
+            });
+          }}
+        />
+
+        <Spacer />
+
+        {autoplay && (
+          <InputControl
+            label="Interval(ms)"
+            type="number"
+            value={autoplaySpeed}
+            onChange={(value) => {
+              setAttributes({
+                slideOptions: updateData(slideOptions, value, "autoplaySpeed"),
+              });
+            }}
+          />
+        )}
+
+        <Spacer />
+
+        <ToggleControl
+          label="Show Arrows"
+          checked={arrows}
+          onChange={(value) => {
+            setAttributes({
+              slideOptions: updateData(slideOptions, value, "arrows"),
+            });
+          }}
+        />
+
+        <Spacer />
+
+        <ToggleControl
+          label="Slide on Mouse Drag"
+          checked={dragOnMouse}
+          onChange={(value) => {
+            setAttributes({
+              slideOptions: updateData(slideOptions, value, "dragOnMouse"),
+            });
+          }}
+        />
+
+        <Spacer />
+
+        <ToggleControl
+          label="Slide On Mouse Wheel"
+          checked={slidesToScroll}
+          onChange={(value) => {
+            setAttributes({
+              slideOptions: updateData(slideOptions, value, "slidesToScroll"),
+            });
+          }}
+        />
+
+        {/* <ToggleControl
+          label="Show Indicators/Pagination"
+          checked={true}
+          onChange={(e) => console.log(e)}
+        />
+
+        
+        <ToggleControl
+          label="Pause on Hover"
+          checked={true}
+          onChange={(e) => console.log(e)}
+        />
+        
+        <ToggleControl
+          label="Swipe"
+          checked={true}
+          onChange={(e) => console.log(e)}
+        /> */}
+      </PanelBody>
+
+      {/* Indicators */}
+      <PanelBody
+        className="bPlPanelBody"
+        title={__("Indicators", "b-blocks")}
+        initialOpen={false}
+      >
+        <SelectControl
+          label="Pagination Style"
+          value={paginationStyles.indicatorStyle}
+          options={[
+            { label: "Bullets", value: "numbers" },
+            { label: "Circles", value: "circles" },
+            { label: "Squares", value: "squares" },
+            { label: "Custom Circles", value: "custom" },
+          ]}
+          onChange={(newStyle) => {
+            setAttributes({
+              paginationStyles: updateData(
+                paginationStyles,
+                newStyle,
+                "indicatorStyle"
+              ),
+            });
+          }}
+        />
+      </PanelBody>
+    </>
   );
 };
 

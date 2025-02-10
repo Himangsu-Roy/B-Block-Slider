@@ -3,13 +3,13 @@
   "apiVersion": 3,
   "name": "b-blocks/b-block-slider",
   "version": "1.0.0",
-  "title": "B Blcok Slider",
+  "title": "B Block Slider",
   "category": "widgets",
-  "description": "Short description of the B Block Slider",
+  "description": "Short description of the Test Purpose",
   "keywords": [
-    "B Block Slider",
-    "Slider",
-    "Block Slider"
+    "block slider",
+    "b block slider",
+    "slider"
   ],
   "textdomain": "b-blocks",
   "attributes": {
@@ -27,6 +27,444 @@
         "color": "black",
         "bg": "#B1C5A4"
       }
+    },
+    "slides": {
+      "type": "array",
+      "default": [
+        {
+          "image": "https://plus.unsplash.com/premium_photo-1672116453118-5971acb7b93b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          "alt": "Alt 1",
+          "title": "Slide 1",
+          "description": "Description 1",
+          "buttonLabel": "",
+          "buttonLink": "",
+          "buttonTarget": true,
+          "backgroundConfig": {
+            "type": "solid",
+            "color": "#ff0000",
+            "gradient": "linear-gradient(45deg, #ff0000, #00ff00)",
+            "image": {
+              "url": "https://plus.unsplash.com/premium_photo-1672116453118-5971acb7b93b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            },
+            "position": "center center",
+            "repeat": "no-repeat",
+            "size": "cover",
+            "overlayColor": "#00000080"
+          }
+        },
+        {
+          "image": "https://plus.unsplash.com/premium_photo-1672116453030-b3412d244c54?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          "alt": "Alt 2",
+          "title": "Slide 2",
+          "description": "Description 2",
+          "buttonLabel": "",
+          "buttonLink": "",
+          "buttonTarget": true,
+          "backgroundConfig": {
+            "type": "solid",
+            "color": "#ff0000",
+            "gradient": "linear-gradient(45deg, #ff0000, #00ff00)",
+            "image": {
+              "url": "https://plus.unsplash.com/premium_photo-1672116453030-b3412d244c54?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            },
+            "position": "center center",
+            "repeat": "no-repeat",
+            "size": "cover",
+            "overlayColor": "#00000080"
+          }
+        },
+        {
+          "image": "https://plus.unsplash.com/premium_photo-1673240367277-e1d394465b56?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          "alt": "Alt 3",
+          "title": "Slide 3",
+          "description": "Description 3",
+          "buttonLabel": "Details",
+          "buttonLink": "",
+          "buttonTarget": true,
+          "backgroundConfig": {
+            "type": "solid",
+            "color": "#ff0000",
+            "gradient": "linear-gradient(45deg, #ff0000, #00ff00)",
+            "image": {
+              "url": "https://plus.unsplash.com/premium_photo-1673240367277-e1d394465b56?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            },
+            "position": "center center",
+            "repeat": "no-repeat",
+            "size": "cover",
+            "overlayColor": "#00000080"
+          }
+        }
+      ]
+    },
+    "titleTag": {
+      "type": "string",
+      "default": "h2"
+    },
+    "layoutSettings": {
+      "type": "object",
+      "default": {
+        "leftRightTextGap": "",
+        "slideDirection": "horizontal",
+        "contentPosition": "center center",
+        "layoutPositionMobile": "center",
+        "layoutPositionTablet": "center",
+        "layoutPositionDesktop": "center",
+        "layoutPositionWidescreen": "center",
+        "layoutPositionFull": "center",
+        "layoutHeight": {
+          "desktop": "100%",
+          "tablet": "80%",
+          "mobile": "60%"
+        },
+        "layoutWidth": {
+          "desktop": "100%",
+          "tablet": "80%",
+          "mobile": "60%"
+        }
+      }
+    },
+    "prevArrow": {
+      "type": "string",
+      "default": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path d='M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 288 480 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-370.7 0 73.4-73.4c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-128 128z'/></svg>"
+    },
+    "nextArrow": {
+      "type": "string",
+      "default": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path d='M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l370.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z'/></svg>"
+    },
+    "selectedIcon": {
+      "type": "string",
+      "default": ""
+    },
+    "paginationStyles": {
+      "type": "object",
+      "default": {
+        "indicatorStyle": "numbers",
+        "indicatorMove": 4,
+        "dotsPosition": "center",
+        "dotsSize": "30px",
+        "dotsColor": "#000000",
+        "dotsActiveColor": "#000000",
+        "dotsWidth": "10px",
+        "dotsHeight": "10px",
+        "dotsRadius": "50%",
+        "dotsActiveBorderStyle": "solid",
+        "dotsHoverColor": "#000000",
+        "dotsBgColor": "#ffffff",
+        "dotsBgHoverColor": "#ffffff",
+        "dotsBorderColor": "#000000",
+        "dotsBorderHoverColor": "#000000"
+      }
+    },
+    "slideOptions": {
+      "type": "object",
+      "default": {
+        "effect": "slide",
+        "autoplay": false,
+        "autoplaySpeed": 5000,
+        "dragOnMouse": false,
+        "pauseOnHover": true,
+        "pauseOnFocus": true,
+        "infinite": true,
+        "arrows": true,
+        "dots": true,
+        "fade": false,
+        "speed": 500,
+        "slidesToShow": 1,
+        "slidesToScroll": false,
+        "centerMode": false,
+        "centerPadding": "0px",
+        "variableWidth": false,
+        "adaptiveHeight": false,
+        "lazyLoad": "ondemand",
+        "touchThreshold": 5,
+        "touchMove": true,
+        "swipeToSlide": true,
+        "swipe": true,
+        "responsive": []
+      }
+    },
+    "sliderStyles": {
+      "type": "object",
+      "default": {
+        "overlayColor": "rgba(0, 0, 0, 0.5)",
+        "sliderMargin": {
+          "desktop": {
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          },
+          "tablet": {
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          },
+          "mobile": {
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        "sliderBorderRadius": {
+          "desktop": {
+            "topLeft": 0,
+            "topRight": 0,
+            "bottomRight": 0,
+            "bottomLeft": 0
+          },
+          "tablet": {
+            "topLeft": 0,
+            "topRight": 0,
+            "bottomRight": 0,
+            "bottomLeft": 0
+          },
+          "mobile": {
+            "topLeft": 0,
+            "topRight": 0,
+            "bottomRight": 0,
+            "bottomLeft": 0
+          }
+        }
+      }
+    },
+    "titleStyles": {
+      "type": "object",
+      "default": {
+        "titleTypography": {
+          "fontWeight": "",
+          "fontFamily": "",
+          "fontStyle": "",
+          "fontVariant": "",
+          "fontSize": {
+            "desktop": 40,
+            "tablet": 20,
+            "mobile": 16
+          },
+          "textTransform": "none",
+          "textDecoration": "none",
+          "letterSpacing": "0px",
+          "lineHeight": "100%",
+          "color": "#000000",
+          "backgroundColor": "transparent",
+          "alignment": "center"
+        },
+        "titleColor": "#fff",
+        "titlePadding": {
+          "desktop": {
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          },
+          "tablet": {
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          },
+          "mobile": {
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        "titleAnimation": {
+          "animationType": "none",
+          "animationDuration": 0.7,
+          "animationDelay": 0.4,
+          "animationIterationCount": 1
+        }
+      }
+    },
+    "descriptionStyles": {
+      "type": "object",
+      "default": {
+        "descriptionTypography": {
+          "fontWeight": "",
+          "fontFamily": "",
+          "fontStyle": "",
+          "fontVariant": "",
+          "fontSize": {
+            "desktop": 16,
+            "tablet": 14,
+            "mobile": 12
+          },
+          "textTransform": "none",
+          "textDecoration": "none",
+          "letterSpacing": "0px",
+          "lineHeight": "100%",
+          "color": "#fff",
+          "backgroundColor": "transparent",
+          "alignment": "center"
+        },
+        "descriptionColor": "#fff",
+        "descriptionMargin": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0,
+          "desktop": {
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          },
+          "tablet": {
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          },
+          "mobile": {
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        "descriptionAnimation": {
+          "animationType": "none",
+          "animationDuration": 0.7,
+          "animationDelay": 0.4,
+          "animationIterationCount": 1
+        }
+      }
+    },
+    "buttonStyles": {
+      "type": "object",
+      "default": {
+        "buttonTypography": {
+          "fontWeight": "",
+          "fontFamily": "",
+          "fontStyle": "",
+          "fontVariant": "",
+          "fontSize": {
+            "desktop": 16,
+            "tablet": 14,
+            "mobile": 12
+          },
+          "textTransform": "none",
+          "textDecoration": "none",
+          "letterSpacing": "0px",
+          "lineHeight": "100%",
+          "color": "#000000",
+          "backgroundColor": "transparent",
+          "alignment": "center"
+        },
+        "buttonColors": {
+          "color": "#000000",
+          "gradient": "linear-gradient(135deg, #ff5733, #ff8c33)",
+          "bg": "#B1C5A4",
+          "bgType": "solid"
+        },
+        "hoverColors": {
+          "color": "#000000",
+          "gradient": "linear-gradient(135deg, #ff5733, #ff8c33)",
+          "bg": "#B1C5A4",
+          "bgType": "solid"
+        },
+        "buttonPadding": {
+          "top": 5,
+          "right": 15,
+          "bottom": 5,
+          "left": 15,
+          "desktop": {
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          },
+          "tablet": {
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          },
+          "mobile": {
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        "buttonBorder": {
+          "color": "#000000",
+          "style": "solid",
+          "width": "1px",
+          "radius": "0px"
+        },
+        "borderRadius": {
+          "desktop": {
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          },
+          "tablet": {
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          },
+          "mobile": {
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        "buttonAnimation": {
+          "animationType": "none",
+          "animationDuration": 0.7,
+          "animationDelay": 0.4,
+          "animationIterationCount": 1
+        }
+      }
+    },
+    "arrowStyles": {
+      "type": "object",
+      "default": {
+        "arrowStyle": "arrow",
+        "arrowPosition": "center",
+        "arrowSize": 30,
+        "arrowColor": "#000000",
+        "arrowHoverColor": "#000000",
+        "arrowBgColor": "#ffffff",
+        "arrowBgHoverColor": "#ffffff",
+        "arrowBorderColor": "#000000",
+        "arrowBorderHoverColor": "#000000",
+        "arrowWidth": "20",
+        "arrowHeight": "20",
+        "backgroundColor": {
+          "color": "#fff",
+          "gradient": "linear-gradient(135deg, #ff5733, #ff8c33)",
+          "bg": "",
+          "bgType": "solid"
+        },
+        "arrowBorderRadius": {
+          "desktop": {
+            "topLeft": 50,
+            "topRight": 50,
+            "bottomRight": 50,
+            "bottomLeft": 50
+          },
+          "tablet": {
+            "topLeft": 50,
+            "topRight": 50,
+            "bottomRight": 50,
+            "bottomLeft": 50
+          },
+          "mobile": {
+            "topLeft": 50,
+            "topRight": 50,
+            "bottomRight": 50,
+            "bottomLeft": 50
+          }
+        }
+      }
     }
   },
   "supports": {
@@ -39,9 +477,18 @@
   "example": {
     "attributes": {}
   },
-  "editorScript": "file:./index.js",
+  "editorScript": [
+    "file:./index.js",
+    "swiper_js"
+  ],
   "editorStyle": "file:./index.css",
-  "style": "file:./view.css",
+  "style": [
+    "file:./view.css",
+    "swiper_css"
+  ],
   "render": "file:./render.php",
-  "viewScript": "file:./view.js"
+  "viewScript": [
+    "file:./view.js",
+    "swiper_js"
+  ]
 }
