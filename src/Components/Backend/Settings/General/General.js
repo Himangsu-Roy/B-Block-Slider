@@ -53,8 +53,6 @@ const General = ({ attributes, setAttributes, device }) => {
     slidesToScroll,
   } = slideOptions;
 
-  console.log(layoutSettings.layoutWidth, "device");
-
   return (
     <>
       <PanelBody
@@ -66,13 +64,27 @@ const General = ({ attributes, setAttributes, device }) => {
           {...{ attributes, setAttributes }}
           arrKey="slides"
           newItem={{
-            image: "XXX",
-            alt: "Alt 1",
-            title: "Slide 1",
-            description: "Description 1",
+            image:
+              "https://plus.unsplash.com/premium_photo-1672116453030-b3412d244c54?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            alt: "Alt 2",
+            title: "Slide",
+            description:
+              "Seamlessly create resource sucking niches via go forward potentialities. Objectively facilitate distinctive applications for corporate metrics. Proactively procrastinate bricks-and-clicks paradigms before adaptive channels. Dynamically scale.<br>",
             buttonLabel: "",
             buttonLink: "",
             buttonTarget: true,
+            backgroundConfig: {
+              type: "image",
+              color: "#ff0000",
+              gradient: "linear-gradient(45deg, #ff0000, #00ff00)",
+              image: {
+                url: "https://plus.unsplash.com/premium_photo-1672116453030-b3412d244c54?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+              },
+              position: "center center",
+              repeat: "no-repeat",
+              size: "cover",
+              overlayColor: "#00000080",
+            },
           }}
           ItemSettings={Items}
           itemLabel="Slide"
@@ -180,7 +192,7 @@ const General = ({ attributes, setAttributes, device }) => {
           }}
         />
 
-        <div
+        {/* <div
           style={{
             display: "flex",
             justifyContent: "center",
@@ -202,7 +214,9 @@ const General = ({ attributes, setAttributes, device }) => {
               });
             }}
           />
-        </div>
+        </div> */}
+
+        <Spacer />
 
         {/* Icon Selectors for Arrows */}
         <IconLibrary
@@ -331,10 +345,10 @@ const General = ({ attributes, setAttributes, device }) => {
           label="Pagination Style"
           value={paginationStyles.indicatorStyle}
           options={[
-            { label: "Bullets", value: "numbers" },
+            { label: "Numbers", value: "numbers" },
             { label: "Circles", value: "circles" },
             { label: "Squares", value: "squares" },
-            { label: "Custom Circles", value: "custom" },
+            { label: "Hole Circles", value: "custom" },
           ]}
           onChange={(newStyle) => {
             setAttributes({

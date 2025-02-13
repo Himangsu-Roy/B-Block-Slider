@@ -1,7 +1,7 @@
 import { __ } from "@wordpress/i18n";
 import {
   PanelBody,
-  __experimentalBoxControl as BoxControl,
+  // __experimentalBoxControl as BoxControl,
   SelectControl,
   __experimentalInputControl as InputControl,
   ToggleControl,
@@ -12,6 +12,7 @@ import {
   __experimentalBorderBoxControl as BorderBoxControl,
 } from "@wordpress/components";
 
+import { BoxControl } from "../../../../../../bpl-tools/Components";
 import { ColorControl } from "../../../../../../bpl-tools/Components/ColorControl/ColorControl";
 import { updateData } from "../../../../utils/functions";
 import {
@@ -51,8 +52,6 @@ const Style = ({ attributes, setAttributes }) => {
           }
           defaultColor={sliderStyles.overlayColor}
         /> */}
-
-        
 
         <BoxControl
           label="Margin"
@@ -335,6 +334,7 @@ const Style = ({ attributes, setAttributes }) => {
 
         <BoxControl
           label="Padding"
+          units={[pxUnit()]}
           values={buttonStyles.buttonPadding}
           onChange={(nextValues) =>
             setAttributes({
@@ -349,7 +349,6 @@ const Style = ({ attributes, setAttributes }) => {
 
         <Spacer />
 
-        {/* Has problem */}
         <BorderBoxControl
           label="Border"
           value={buttonBorder}
@@ -359,6 +358,24 @@ const Style = ({ attributes, setAttributes }) => {
                 buttonStyles,
                 nextValues,
                 "buttonBorder"
+              ),
+            })
+          }
+        />
+
+        <Spacer />
+
+        {/* Box Control */}
+        <BoxControl
+          label="Border Radius"
+          units={[pxUnit()]}
+          values={buttonStyles.borderRadius}
+          onChange={(nextValues) =>
+            setAttributes({
+              buttonStyles: updateData(
+                buttonStyles,
+                nextValues,
+                "borderRadius"
               ),
             })
           }

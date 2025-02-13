@@ -32,7 +32,7 @@ const Items = ({
     setActiveIndex && setActiveIndex(index);
   };
 
-  console.log(items[index].backgroundConfig, "item>>>>");
+  
 
   return (
     <div>

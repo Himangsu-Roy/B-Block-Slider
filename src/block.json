@@ -31,12 +31,12 @@
           "image": "https://plus.unsplash.com/premium_photo-1672116453118-5971acb7b93b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
           "alt": "Alt 1",
           "title": "Slide 1",
-          "description": "Description 1",
+          "description": "Seamlessly create resource sucking niches via go forward potentialities. Objectively facilitate distinctive applications for corporate metrics. Proactively procrastinate bricks-and-clicks paradigms before adaptive channels. Dynamically scale.<br>",
           "buttonLabel": "",
           "buttonLink": "",
           "buttonTarget": true,
           "backgroundConfig": {
-            "type": "solid",
+            "type": "image",
             "color": "#ff0000",
             "gradient": "linear-gradient(45deg, #ff0000, #00ff00)",
             "image": {
@@ -52,12 +52,12 @@
           "image": "https://plus.unsplash.com/premium_photo-1672116453030-b3412d244c54?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
           "alt": "Alt 2",
           "title": "Slide 2",
-          "description": "Description 2",
+          "description": "Seamlessly create resource sucking niches via go forward potentialities. Objectively facilitate distinctive applications for corporate metrics. Proactively procrastinate bricks-and-clicks paradigms before adaptive channels. Dynamically scale.<br>",
           "buttonLabel": "",
           "buttonLink": "",
           "buttonTarget": true,
           "backgroundConfig": {
-            "type": "solid",
+            "type": "image",
             "color": "#ff0000",
             "gradient": "linear-gradient(45deg, #ff0000, #00ff00)",
             "image": {
@@ -73,12 +73,12 @@
           "image": "https://plus.unsplash.com/premium_photo-1673240367277-e1d394465b56?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
           "alt": "Alt 3",
           "title": "Slide 3",
-          "description": "Description 3",
+          "description": "Seamlessly create resource sucking niches via go forward potentialities. Objectively facilitate distinctive applications for corporate metrics. Proactively procrastinate bricks-and-clicks paradigms before adaptive channels. Dynamically scale. <br>",
           "buttonLabel": "Details",
           "buttonLink": "",
           "buttonTarget": true,
           "backgroundConfig": {
-            "type": "solid",
+            "type": "image",
             "color": "#ff0000",
             "gradient": "linear-gradient(45deg, #ff0000, #00ff00)",
             "image": {
@@ -186,6 +186,10 @@
       "default": {
         "overlayColor": "rgba(0, 0, 0, 0.5)",
         "sliderMargin": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0,
           "desktop": {
             "top": 0,
             "right": 0,
@@ -206,6 +210,10 @@
           }
         },
         "sliderBorderRadius": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0,
           "desktop": {
             "topLeft": 0,
             "topRight": 0,
@@ -250,6 +258,10 @@
         },
         "titleColor": "#fff",
         "titlePadding": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0,
           "desktop": {
             "top": 0,
             "right": 0,
@@ -368,25 +380,7 @@
           "top": 5,
           "right": 15,
           "bottom": 5,
-          "left": 15,
-          "desktop": {
-            "top": 0,
-            "right": 0,
-            "bottom": 0,
-            "left": 0
-          },
-          "tablet": {
-            "top": 0,
-            "right": 0,
-            "bottom": 0,
-            "left": 0
-          },
-          "mobile": {
-            "top": 0,
-            "right": 0,
-            "bottom": 0,
-            "left": 0
-          }
+          "left": 15
         },
         "buttonBorder": {
           "color": "#000000",
@@ -395,6 +389,10 @@
           "radius": "0px"
         },
         "borderRadius": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0,
           "desktop": {
             "top": 0,
             "right": 0,
@@ -428,7 +426,7 @@
       "default": {
         "arrowStyle": "arrow",
         "arrowPosition": "center",
-        "arrowSize": 30,
+        "arrowSize": 16,
         "arrowColor": "#000000",
         "arrowHoverColor": "#000000",
         "arrowBgColor": "#ffffff",
@@ -466,7 +464,6 @@
         }
       }
     }
-    
   },
   "supports": {
     "align": ["wide", "full"],

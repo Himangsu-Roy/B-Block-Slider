@@ -21,6 +21,260 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
 /* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_4__);
 
+// import React, { useEffect, useRef, useState } from "react";
+// import "swiper/css";
+// import { useBlockProps, RichText } from "@wordpress/block-editor";
+// import { updateData } from "../../../../bpl-tools/utils/functions";
+// import { useSelect } from "@wordpress/data";
+
+// const BBlockSlider = ({ attributes, setAttributes }) => {
+//   const isEditor = useSelect(
+//     (select) => select("core/edit-post") !== undefined,
+//     []
+//   );
+//   const {
+//     slides,
+//     titleTag,
+//     selectedIcon,
+//     nextArrow,
+//     prevArrow,
+//     slideOptions,
+//     layoutSettings,
+//     paginationStyles,
+//   } = attributes;
+
+//   const { indicatorStyle } = paginationStyles;
+
+//   const {
+//     effect,
+//     autoplaySpeed,
+//     autoplay,
+//     dragOnMouse,
+//     slidesToScroll,
+//     arrows,
+//   } = slideOptions;
+
+//   const { slideDirection, contentPosition } = layoutSettings;
+
+//   const swiperRef = useRef(null);
+//   const pageRef = useRef(null);
+//   const prevRef = useRef(null);
+//   const nextRef = useRef(null);
+//   const paginationRef = useRef(null);
+
+//   // Create navigation buttons
+//   const swiperButtonNext = document.createElement("div");
+//   swiperButtonNext.classList.add(
+//     "swiper-button-next",
+//     "swiper-button-vertical"
+//   );
+
+//   const swiperButtonPrev = document.createElement("div");
+//   swiperButtonPrev.classList.add(
+//     "swiper-button-prev",
+//     "swiper-button-vertical"
+//   );
+
+//   swiperContainer.appendChild(swiperButtonNext);
+//   swiperContainer.appendChild(swiperButtonPrev);
+
+//   useEffect(() => {
+//     const swiperInstance = new Swiper(swiperRef.current, {
+//       loop: true,
+//       grabCursor: dragOnMouse,
+//       lazy: true,
+//       simulateTouch: false,
+//       effect: `${effect}`,
+//       direction: `${slideDirection}`,
+//       autoplay: autoplay
+//         ? {
+//             delay: autoplaySpeed,
+//             disableOnInteraction: false,
+//           }
+//         : false,
+//       mousewheel: slidesToScroll,
+//       keyboard: {
+//         enabled: true,
+//       },
+
+//       pagination: {
+//         el: paginationRef.current,
+//         clickable: true,
+//         renderBullet: (index, className) => {
+//           const { paginationStyle } = attributes;
+
+//           const getBulletContent = () => {
+//             switch (indicatorStyle) {
+//               case "numbers":
+//                 return `<span class="bullet-number">${index + 1}</span>`;
+
+//               case "circles":
+//                 return `
+//                 <svg class="pagination-icon" viewBox="0 0 32 32">
+//                   <circle cx="16" cy="16" r="14"/>
+//                 </svg>
+//               `;
+
+//               case "squares":
+//                 return `
+//                 <svg class="pagination-icon" viewBox="0 0 32 32">
+//                   <rect x="4" y="4" width="24" height="24" rx="2"/>
+//                 </svg>
+//               `;
+
+//               case "custom":
+//                 return `
+//                 <svg class="pagination-icon" viewBox="0 0 24 24">
+//                   <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+//                 </svg>
+//               `;
+
+//               default:
+//                 return index + 1;
+//             }
+//           };
+
+//           return `
+//           <span class="${className} custom-pagination-bullet ${indicatorStyle}">
+//             ${getBulletContent()}
+//           </span>
+//         `;
+//         },
+//       },
+
+//       navigation: {
+//         nextEl: nextRef?.current,
+//         prevEl: prevRef?.current,
+//       },
+//     });
+
+//     return () => {
+//       if (swiperInstance) swiperInstance.destroy(true, true);
+//     };
+//   }, [
+//     effect,
+//     slideDirection,
+//     autoplay,
+//     autoplaySpeed,
+//     dragOnMouse,
+//     slidesToScroll,
+//     selectedIcon,
+//     nextArrow,
+//     prevArrow,
+//     indicatorStyle,
+//     slides,
+//   ]);
+
+//   const handleNext = () => swiperRef.current.swiper.slideNext();
+//   const handlePrev = () => swiperRef.current.swiper.slidePrev();
+//   const handleDotClick = (index) => swiperRef.current.swiper.slideTo(index + 1);
+
+//   return (
+//     <>
+//       {slides && (
+//         <div
+//           // style={{ width: "100%", height: "100%" }}
+//           className="swiper"
+//           ref={swiperRef}
+//         >
+//           <div className="swiper-wrapper">
+//             {slides.map((slide, index) => (
+//               <div
+//                 className={`swiper-slide swiper-slide-${index}`}
+//                 key={slide.id}
+//               >
+//                 <div className={`slide-content slide-content-${index}`}>
+//                   <RichText
+//                     className="slide-title"
+//                     tagName={titleTag}
+//                     value={slide.title}
+//                     allowedFormats={["core/bold", "core/italic"]}
+//                     onChange={(value) => {
+//                       setAttributes({
+//                         slides: updateData(slides, value, index, "title"),
+//                       });
+//                     }}
+//                     placeholder="Enter slide title"
+//                   />
+
+//                   <RichText
+//                     className="slide-description"
+//                     tagName="p"
+//                     value={slide.description}
+//                     allowedFormats={["core/bold", "core/italic"]}
+//                     onChange={(value) => {
+//                       setAttributes({
+//                         slides: updateData(slides, value, index, "description"),
+//                       });
+//                     }}
+//                     placeholder="Enter slide description"
+//                   />
+
+//                   {isEditor
+//                     ? slide.buttonLabel && (
+//                         <RichText
+//                           className="slide-button"
+//                           tagName="a"
+//                           value={slide.buttonLabel}
+//                           allowedFormats={["core/bold", "core/italic"]}
+//                           onChange={(value) => {
+//                             setAttributes({
+//                               slides: updateData(
+//                                 slides,
+//                                 value,
+//                                 index,
+//                                 "buttonLabel"
+//                               ),
+//                             });
+//                           }}
+//                           placeholder="Enter button label"
+//                         />
+//                       )
+//                     : slide.buttonLabel && (
+//                         <a
+//                           className="slide-button"
+//                           href={slide.buttonLink || "#"}
+//                           target={slide.buttonTarget ? "_blank" : "_self"}
+//                           rel={slide.buttonTarget ? "noopener noreferrer" : ""}
+//                         >
+//                           {slide.buttonLabel}
+//                         </a>
+//                       )}
+//                 </div>
+//               </div>
+//             ))}
+//           </div>
+
+//           {arrows && (
+//             <>
+//               <div
+//                 ref={nextRef}
+//                 onClick={handleNext}
+//                 className="swiper-button-next"
+//                 dangerouslySetInnerHTML={{ __html: `${nextArrow}` }}
+//               />
+//               <div
+//                 ref={prevRef}
+//                 onClick={handlePrev}
+//                 className="swiper-button-prev"
+//                 dangerouslySetInnerHTML={{ __html: `${prevArrow}` }}
+//               />
+//             </>
+//           )}
+
+//           {/* Custom Pagination */}
+//           <div
+//             ref={paginationRef}
+//             className="swiper-pagination custom-pagination"
+//           />
+//         </div>
+//       )}
+//     </>
+//   );
+// };
+
+// export default BBlockSlider;
+
 
 
 
@@ -44,7 +298,6 @@ const BBlockSlider = ({
   const {
     indicatorStyle
   } = paginationStyles;
-  console.log(nextArrow);
   const {
     effect,
     autoplaySpeed,
@@ -62,10 +315,78 @@ const BBlockSlider = ({
   const prevRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
   const nextRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
   const paginationRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
-  const [activeIndex, setActiveIndex] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0);
+
+  // Append vertical navigation buttons dynamically
+  // useEffect(() => {
+  //   if (swiperRef.current && arrows && slideDirection === "vertical") {
+  //     const swiperContainer = swiperRef.current;
+
+  //     // Create next button
+  //     const swiperButtonNext = document.createElement("div");
+  //     swiperButtonNext.classList.add(
+  //       "swiper-button-next",
+  //       "swiper-button-vertical"
+  //     );
+  //     swiperButtonNext.innerHTML = nextArrow;
+  //     swiperButtonNext.addEventListener("click", handleNext);
+
+  //     // Create prev button
+  //     const swiperButtonPrev = document.createElement("div");
+  //     swiperButtonPrev.classList.add(
+  //       "swiper-button-prev",
+  //       "swiper-button-vertical"
+  //     );
+  //     swiperButtonPrev.innerHTML = prevArrow;
+  //     swiperButtonPrev.addEventListener("click", handlePrev);
+
+  //     // Append buttons to the Swiper container
+  //     swiperContainer.appendChild(swiperButtonNext);
+  //     swiperContainer.appendChild(swiperButtonPrev);
+
+  //     // Cleanup function to remove buttons on unmount
+  //     return () => {
+  //       swiperButtonNext.removeEventListener("click", handleNext);
+  //       swiperButtonPrev.removeEventListener("click", handlePrev);
+  //       swiperContainer.removeChild(swiperButtonNext);
+  //       swiperContainer.removeChild(swiperButtonPrev);
+  //     };
+  //   }
+  // }, [arrows, slideDirection, nextArrow, prevArrow]);
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    if (swiperRef.current && arrows) {
+      const swiperContainer = swiperRef.current;
+
+      // Create next button
+      const swiperButtonNext = document.createElement("div");
+      swiperButtonNext.classList.add("swiper-button-next", slideDirection === "vertical" ? "swiper-button-vertical" : "swiper-button-horizontal");
+      swiperButtonNext.innerHTML = nextArrow;
+      swiperButtonNext.addEventListener("click", handleNext);
+
+      // Create prev button
+      const swiperButtonPrev = document.createElement("div");
+      swiperButtonPrev.classList.add("swiper-button-prev", slideDirection === "vertical" ? "swiper-button-vertical" : "swiper-button-horizontal");
+      swiperButtonPrev.innerHTML = prevArrow;
+      swiperButtonPrev.addEventListener("click", handlePrev);
+
+      // Append buttons to the Swiper container
+      swiperContainer.appendChild(swiperButtonNext);
+      swiperContainer.appendChild(swiperButtonPrev);
+
+      // Cleanup function to remove buttons on unmount
+      return () => {
+        swiperButtonNext.removeEventListener("click", handleNext);
+        swiperButtonPrev.removeEventListener("click", handlePrev);
+        swiperContainer.removeChild(swiperButtonNext);
+        swiperContainer.removeChild(swiperButtonPrev);
+      };
+    }
+  }, [arrows, slideDirection, nextArrow, prevArrow]);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     const swiperInstance = new Swiper(swiperRef.current, {
       loop: true,
+      grabCursor: dragOnMouse,
+      lazy: true,
       simulateTouch: false,
       effect: `${effect}`,
       direction: `${slideDirection}`,
@@ -73,33 +394,10 @@ const BBlockSlider = ({
         delay: autoplaySpeed,
         disableOnInteraction: false
       } : false,
-      grabCursor: dragOnMouse,
       mousewheel: slidesToScroll,
-      // pagination: {
-      //   el: pageRef.current,
-      //   clickable: true,
-      //   renderBullet: (index, className) => {
-      //     return `<span class="${className} custom-pagination-dot">${
-      //       index + 1
-      //     }</span>`;
-      //   },
-      // },
-      // pagination: {
-      //   el: paginationRef.current,
-      //   clickable: true,
-      //   type: "bullets",
-      //   renderBullet: function (index, className) {
-      //     return `
-      //       <span class="${className} custom-pagination-bullet">
-      //         <svg class="pagination-icon" viewBox="0 0 32 32">
-      //           <circle cx="16" cy="16" r="14"/>
-      //         </svg>
-      //         <span class="bullet-number">${index + 1}</span>
-      //       </span>
-      //     `;
-      //   },
-      // },
-
+      keyboard: {
+        enabled: true
+      },
       pagination: {
         el: paginationRef.current,
         clickable: true,
@@ -144,40 +442,15 @@ const BBlockSlider = ({
         nextEl: nextRef?.current,
         prevEl: prevRef?.current
       }
-
-      // on: {
-      //   init: function (swiper) {
-      //     console.log(swiper, "Swiper initialized");
-
-      //     // Customize navigation buttons with selected icons
-      //     if (selectedIcon) {
-      //       const prevBtn = swiper.navigation.prevEl;
-      //       const nextBtn = swiper.navigation.nextEl;
-
-      //       // Customizing previous button
-      //       if (prevBtn) {
-      //         prevBtn.innerHTML = selectedIcon; // Use prevArrow if available, else use selectedIcon
-      //         prevBtn.classList.add("custom-swiper-btn");
-      //       }
-
-      //       // Customizing next button
-      //       if (nextBtn) {
-      //         nextBtn.innerHTML = "<p>next</p>"; // Use nextArrow if available, else use selectedIcon
-      //         nextBtn.classList.add("custom-swiper-btn");
-      //       }
-      //     }
-      //   },
-      // },
     });
     return () => {
       if (swiperInstance) swiperInstance.destroy(true, true);
     };
-  }, [effect, slideDirection, autoplay, autoplaySpeed, dragOnMouse, slidesToScroll, selectedIcon, nextArrow, prevArrow, indicatorStyle]);
+  }, [effect, slideDirection, autoplay, autoplaySpeed, dragOnMouse, slidesToScroll, selectedIcon, nextArrow, prevArrow, indicatorStyle, slides]);
   const handleNext = () => swiperRef.current.swiper.slideNext();
   const handlePrev = () => swiperRef.current.swiper.slidePrev();
   const handleDotClick = index => swiperRef.current.swiper.slideTo(index + 1);
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, slides && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    // style={{ width: "100%", height: "100%" }}
     className: "swiper",
     ref: swiperRef
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -185,18 +458,13 @@ const BBlockSlider = ({
   }, slides.map((slide, index) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: `swiper-slide swiper-slide-${index}`,
     key: slide.id
-    // style={{ position: "relative" }}
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: `slide-content slide-content-${index}`
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
     className: "slide-title",
     tagName: titleTag,
     value: slide.title,
-    allowedFormats: ["core/bold", "core/italic"]
-    // style={{
-    //   margin: "0",
-    // }}
-    ,
+    allowedFormats: ["core/bold", "core/italic"],
     onChange: value => {
       setAttributes({
         slides: (0,_bpl_tools_utils_functions__WEBPACK_IMPORTED_MODULE_3__.updateData)(slides, value, index, "title")
@@ -207,11 +475,7 @@ const BBlockSlider = ({
     className: "slide-description",
     tagName: "p",
     value: slide.description,
-    allowedFormats: ["core/bold", "core/italic"]
-    // style={{
-    //   margin: "0",
-    // }}
-    ,
+    allowedFormats: ["core/bold", "core/italic"],
     onChange: value => {
       setAttributes({
         slides: (0,_bpl_tools_utils_functions__WEBPACK_IMPORTED_MODULE_3__.updateData)(slides, value, index, "description")
@@ -229,36 +493,12 @@ const BBlockSlider = ({
       });
     },
     placeholder: "Enter button label"
-  }) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
+  }) : slide.buttonLabel && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
     className: "slide-button",
     href: slide.buttonLink || "#",
     target: slide.buttonTarget ? "_blank" : "_self",
     rel: slide.buttonTarget ? "noopener noreferrer" : ""
-    // style={{
-    //   display: "inline-block",
-    //   backgroundColor: "#0073aa",
-    //   color: "#ffffff",
-    //   padding: "10px 20px",
-    //   textDecoration: "none",
-    //   borderRadius: "4px",
-    //   textAlign: "center",
-    //   cursor: "pointer",
-    // }}
-  }, slide.buttonLabel || "Click Here"))))), arrows && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    ref: nextRef,
-    onClick: handleNext,
-    className: "swiper-button-next",
-    dangerouslySetInnerHTML: {
-      __html: `${nextArrow}`
-    }
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    ref: prevRef,
-    onClick: handlePrev,
-    className: "swiper-button-prev",
-    dangerouslySetInnerHTML: {
-      __html: `${prevArrow}`
-    }
-  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, slide.buttonLabel))))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ref: paginationRef,
     className: "swiper-pagination custom-pagination"
   })));
@@ -280,8 +520,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../bpl-tools/utils/getCSS */ "../bpl-tools/utils/getCSS.js");
+/* harmony import */ var _bpl_tools_utils_data__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../bpl-tools/utils/data */ "../bpl-tools/utils/data.js");
 
 // import { getColorsCSS } from "../../../../Components/utils/getCSS";
+
 
 const Style = ({
   attributes,
@@ -321,7 +563,7 @@ const Style = ({
     buttonPadding,
     buttonAnimation
   } = buttonStyles;
-  console.log(buttonPadding, "button padding");
+  console.log(buttonPadding?.top, "button padding");
   const {
     leftRightTextGap,
     layoutHeight,
@@ -335,6 +577,9 @@ const Style = ({
   const mainSl = `#${id}`;
   const swiperSl = `${mainSl} .swiper`;
   const wrapperrSl = `${swiperSl} .swiper-wrapper`;
+  const swiperSlideSl = `${wrapperrSl} .swiper-slide`;
+  const slideContentSll = `${swiperSlideSl} .slide-content`;
+  const titleSl = `${slideContentSll} .slide-title`;
   // const blockSl = `${mainSl} .bBlocksTestPurpose`;
 
   // Overlay color
@@ -357,6 +602,7 @@ const Style = ({
   const slideArrowSl = `#${id} .swiper`;
   // Slide content
   const slideContentSl = `#${id} .swiper .swiper-wrapper .swiper-slide .slide-content`;
+  const slideBtnSl = `#${id} .swiper .swiper-wrapper .swiper-slide `;
 
   // Height
   const sliderHeightSl = `#${id} .swiper`;
@@ -369,12 +615,18 @@ const Style = ({
       ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getBackgroundCSS)(backgroundConfig)}
 
     }
+
+    ${slideBtnSl} .slide-content-${index} a{
+      padding: ${buttonPadding?.top} ${buttonPadding?.right} ${buttonPadding?.bottom} ${buttonPadding?.left};
+    }
       
     `;
   }).join("\n");
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", {
     dangerouslySetInnerHTML: {
       __html: `
+        ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getTypoCSS)("", titleStyles.titleTypography)?.googleFontLink}
+        ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getTypoCSS)(titleSl, titleStyles.titleTypography)?.styles}
 
         ${slideStyles}
 
@@ -382,7 +634,6 @@ const Style = ({
           height:500px;
           width:100%;
           text-align: center;
-         
           
         }
 
@@ -433,11 +684,11 @@ const Style = ({
 
       ${marginSl}{
       // position: relative;
-        margin: ${sliderStyles.sliderMargin.top}px ${sliderStyles.sliderMargin.right}px ${sliderStyles.sliderMargin.bottom}px ${sliderStyles.sliderMargin.left}px;
+        margin: ${sliderStyles.sliderMargin.top} ${sliderStyles.sliderMargin.right} ${sliderStyles.sliderMargin.bottom} ${sliderStyles.sliderMargin.left};
       }
 
       ${borderRadiusSl}{
-        border-radius: ${sliderStyles.sliderBorderRadius.top}px ${sliderStyles.sliderBorderRadius.right}px ${sliderStyles.sliderBorderRadius.bottom}px ${sliderStyles.sliderBorderRadius.left}px;
+        border-radius: ${sliderStyles.sliderBorderRadius.top} ${sliderStyles.sliderBorderRadius.right} ${sliderStyles.sliderBorderRadius.bottom} ${sliderStyles.sliderBorderRadius.left};
       }
 
       ${slideTitleSl}{
@@ -452,7 +703,7 @@ const Style = ({
         text-transform: ${titleTypography.textTransform};
         margin: 0;
         color: ${titleColor};
-        padding: ${titlePadding.top}px ${titlePadding.right}px ${titlePadding.bottom}px ${titlePadding.left}px;
+        padding: ${titlePadding.top} ${titlePadding.right} ${titlePadding.bottom} ${titlePadding.left};
         animation: ${titleAnimation.animationType}; 
         animation-duration: ${titleAnimation.animationDuration}s;
         animation-delay: ${titleAnimation.animationDelay}s;
@@ -471,7 +722,7 @@ const Style = ({
         text-transform: ${descriptionTypography.textTransform};
         // margin-bottom: 30px;
         color: ${descriptionColor};
-        margin: ${descriptionMargin.top}px ${descriptionMargin.right}px ${descriptionMargin.bottom}px ${descriptionMargin.left}px;
+        margin: ${descriptionMargin.top} ${descriptionMargin.right} ${descriptionMargin.bottom} ${descriptionMargin.left};
         animation: ${descriptionAnimation.animationType}; 
         animation-duration: ${descriptionAnimation.animationDuration}s;
         animation-delay: ${descriptionAnimation.animationDelay}s;
@@ -492,9 +743,9 @@ const Style = ({
         background-color: ${buttonColors?.bgType === "solid" ? buttonColors.bg : "transparent"};
         background-image: ${buttonColors?.bgType === "gradient" ? `${buttonColors.gradient}` : "none"};
 
-        padding: ${buttonPadding?.top} ${buttonPadding?.right} ${buttonPadding?.bottom} ${buttonPadding?.left};
+         padding: ${buttonPadding?.top} ${buttonPadding?.right} ${buttonPadding?.bottom} ${buttonPadding?.left};
         
-        border-radius: ${borderRadius?.top}px ${borderRadius?.right}px ${borderRadius?.bottom}px ${borderRadius?.left}px;
+        border-radius: ${borderRadius?.top} ${borderRadius?.right} ${borderRadius?.bottom} ${borderRadius?.left};
         
 
         animation: ${buttonAnimation?.animationType}; 
@@ -504,6 +755,8 @@ const Style = ({
         
 
         border: ${buttonBorder?.width} ${buttonBorder?.style} ${buttonBorder?.color};
+
+
       }
 
 
@@ -514,20 +767,20 @@ const Style = ({
         background-image: ${hoverColors?.bgType === "gradient" ? `${hoverColors.gradient}` : "none"};
       }
 
-     ${slideArrowSl} .swiper-button-next svg{
+     ${slideArrowSl} .swiper-button-next.swiper-button-horizontal svg{
       width: ${arrowStyles?.arrowSize}px;
       height: ${arrowStyles?.arrowSize}px;
       
      }
 
-     ${slideArrowSl} .swiper-button-prev svg{
+     ${slideArrowSl} .swiper-button-prev.swiper-button-horizontal svg{
       width: ${arrowStyles?.arrowSize}px;
       height: ${arrowStyles?.arrowSize}px;
       
      }
 
      
-      ${slideArrowSl} .swiper-button-prev{
+      ${slideArrowSl} .swiper-button-prev.swiper-button-horizontal{
         position: absolute;
         // font-size: ${arrowStyles.arrowSize}px;
         top: 50%;
@@ -538,7 +791,7 @@ const Style = ({
         background-color: ${backgroundColor?.bgType === "solid" ? backgroundColor.bg : "transparent"};
         background-image: ${backgroundColor?.bgType === "gradient" ? `${backgroundColor.gradient}` : "none"};
         border: none;
-       border-radius: ${arrowBorderRadius?.top}px ${arrowBorderRadius?.right}px ${arrowBorderRadius?.bottom}px ${arrowBorderRadius?.left}px;
+       border-radius: ${arrowBorderRadius?.top} ${arrowBorderRadius?.right} ${arrowBorderRadius?.bottom} ${arrowBorderRadius?.left};
         display: flex;
         align-items: center;
         justify-content: center;
@@ -551,7 +804,7 @@ const Style = ({
       }
      
 
-      ${slideArrowSl} .swiper-button-next{
+      ${slideArrowSl} .swiper-button-next.swiper-button-horizontal{
         position: absolute;
         // font-size: ${arrowStyles?.arrowSize}px;
         top: 50%;
@@ -562,7 +815,7 @@ const Style = ({
         background-color: ${backgroundColor?.bgType === "solid" ? backgroundColor.bg : "transparent"};
         background-image: ${backgroundColor?.bgType === "gradient" ? `${backgroundColor.gradient}` : "none"};
         border: none;
-        border-radius: ${arrowBorderRadius?.top}px ${arrowBorderRadius?.right}px ${arrowBorderRadius?.bottom}px ${arrowBorderRadius?.left}px;
+        border-radius: ${arrowBorderRadius?.top} ${arrowBorderRadius?.right} ${arrowBorderRadius?.bottom} ${arrowBorderRadius?.left};
         display: flex;
         align-items: center;
         justify-content: center;
@@ -572,8 +825,6 @@ const Style = ({
         // box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
       }
 
-
-       
 
 
            
@@ -591,10 +842,7 @@ const Style = ({
           width: ${layoutWidth.tablet};
         }
       }
-
       
-     
-
       
 
 

@@ -2,7 +2,9 @@
 import {
   getBackgroundCSS,
   getColorsCSS,
+  getTypoCSS,
 } from "../../../../bpl-tools/utils/getCSS";
+import { deskBreakpoint } from "../../../../bpl-tools/utils/data";
 
 const Style = ({ attributes, id, device = "desktop" }) => {
   const {
@@ -34,8 +36,9 @@ const Style = ({ attributes, id, device = "desktop" }) => {
     borderRadius,
     buttonPadding,
     buttonAnimation,
+  
   } = buttonStyles;
-  console.log(buttonPadding, "button padding");
+  console.log(buttonPadding?.top, "button padding");
 
   const { leftRightTextGap, layoutHeight, layoutWidth, contentPosition } =
     layoutSettings;
@@ -45,6 +48,9 @@ const Style = ({ attributes, id, device = "desktop" }) => {
   const mainSl = `#${id}`;
   const swiperSl = `${mainSl} .swiper`;
   const wrapperrSl = `${swiperSl} .swiper-wrapper`;
+  const swiperSlideSl = `${wrapperrSl} .swiper-slide`;
+  const slideContentSll = `${swiperSlideSl} .slide-content`;
+  const titleSl = `${slideContentSll} .slide-title`;
   // const blockSl = `${mainSl} .bBlocksTestPurpose`;
 
   // Overlay color
@@ -67,6 +73,7 @@ const Style = ({ attributes, id, device = "desktop" }) => {
   const slideArrowSl = `#${id} .swiper`;
   // Slide content
   const slideContentSl = `#${id} .swiper .swiper-wrapper .swiper-slide .slide-content`;
+  const slideBtnSl = `#${id} .swiper .swiper-wrapper .swiper-slide `;
 
   // Height
   const sliderHeightSl = `#${id} .swiper`;
@@ -80,17 +87,23 @@ const Style = ({ attributes, id, device = "desktop" }) => {
       ${getBackgroundCSS(backgroundConfig)}
 
     }
+
+    ${slideBtnSl} .slide-content-${index} a{
+      padding: ${buttonPadding?.top} ${buttonPadding?.right} ${
+        buttonPadding?.bottom
+      } ${buttonPadding?.left};
+    }
       
     `;
     })
     .join("\n");
 
-
-
   return (
     <style
       dangerouslySetInnerHTML={{
         __html: `
+        ${getTypoCSS("", titleStyles.titleTypography)?.googleFontLink}
+        ${getTypoCSS(titleSl, titleStyles.titleTypography)?.styles}
 
         ${slideStyles}
 
@@ -98,7 +111,6 @@ const Style = ({ attributes, id, device = "desktop" }) => {
           height:500px;
           width:100%;
           text-align: center;
-         
           
         }
 
@@ -149,19 +161,17 @@ const Style = ({ attributes, id, device = "desktop" }) => {
 
       ${marginSl}{
       // position: relative;
-        margin: ${sliderStyles.sliderMargin.top}px ${
+        margin: ${sliderStyles.sliderMargin.top} ${
           sliderStyles.sliderMargin.right
-        }px ${sliderStyles.sliderMargin.bottom}px ${
-          sliderStyles.sliderMargin.left
-        }px;
+        } ${sliderStyles.sliderMargin.bottom} ${sliderStyles.sliderMargin.left};
       }
 
       ${borderRadiusSl}{
-        border-radius: ${sliderStyles.sliderBorderRadius.top}px ${
+        border-radius: ${sliderStyles.sliderBorderRadius.top} ${
           sliderStyles.sliderBorderRadius.right
-        }px ${sliderStyles.sliderBorderRadius.bottom}px ${
+        } ${sliderStyles.sliderBorderRadius.bottom} ${
           sliderStyles.sliderBorderRadius.left
-        }px;
+        };
       }
 
       ${slideTitleSl}{
@@ -178,9 +188,9 @@ const Style = ({ attributes, id, device = "desktop" }) => {
         text-transform: ${titleTypography.textTransform};
         margin: 0;
         color: ${titleColor};
-        padding: ${titlePadding.top}px ${titlePadding.right}px ${
+        padding: ${titlePadding.top} ${titlePadding.right} ${
           titlePadding.bottom
-        }px ${titlePadding.left}px;
+        } ${titlePadding.left};
         animation: ${titleAnimation.animationType}; 
         animation-duration: ${titleAnimation.animationDuration}s;
         animation-delay: ${titleAnimation.animationDelay}s;
@@ -201,9 +211,9 @@ const Style = ({ attributes, id, device = "desktop" }) => {
         text-transform: ${descriptionTypography.textTransform};
         // margin-bottom: 30px;
         color: ${descriptionColor};
-        margin: ${descriptionMargin.top}px ${descriptionMargin.right}px ${
+        margin: ${descriptionMargin.top} ${descriptionMargin.right} ${
           descriptionMargin.bottom
-        }px ${descriptionMargin.left}px;
+        } ${descriptionMargin.left};
         animation: ${descriptionAnimation.animationType}; 
         animation-duration: ${descriptionAnimation.animationDuration}s;
         animation-delay: ${descriptionAnimation.animationDelay}s;
@@ -232,13 +242,13 @@ const Style = ({ attributes, id, device = "desktop" }) => {
             : "none"
         };
 
-        padding: ${buttonPadding?.top} ${buttonPadding?.right} ${
-          buttonPadding?.bottom
-        } ${buttonPadding?.left};
+         padding: ${buttonPadding?.top} ${buttonPadding?.right} ${
+           buttonPadding?.bottom
+         } ${buttonPadding?.left};
         
-        border-radius: ${borderRadius?.top}px ${borderRadius?.right}px ${
+        border-radius: ${borderRadius?.top} ${borderRadius?.right} ${
           borderRadius?.bottom
-        }px ${borderRadius?.left}px;
+        } ${borderRadius?.left};
         
 
         animation: ${buttonAnimation?.animationType}; 
@@ -250,6 +260,8 @@ const Style = ({ attributes, id, device = "desktop" }) => {
         border: ${buttonBorder?.width} ${buttonBorder?.style} ${
           buttonBorder?.color
         };
+
+
       }
 
 
@@ -266,20 +278,20 @@ const Style = ({ attributes, id, device = "desktop" }) => {
         };
       }
 
-     ${slideArrowSl} .swiper-button-next svg{
+     ${slideArrowSl} .swiper-button-next.swiper-button-horizontal svg{
       width: ${arrowStyles?.arrowSize}px;
       height: ${arrowStyles?.arrowSize}px;
       
      }
 
-     ${slideArrowSl} .swiper-button-prev svg{
+     ${slideArrowSl} .swiper-button-prev.swiper-button-horizontal svg{
       width: ${arrowStyles?.arrowSize}px;
       height: ${arrowStyles?.arrowSize}px;
       
      }
 
      
-      ${slideArrowSl} .swiper-button-prev{
+      ${slideArrowSl} .swiper-button-prev.swiper-button-horizontal{
         position: absolute;
         // font-size: ${arrowStyles.arrowSize}px;
         top: 50%;
@@ -298,9 +310,9 @@ const Style = ({ attributes, id, device = "desktop" }) => {
             : "none"
         };
         border: none;
-       border-radius: ${arrowBorderRadius?.top}px ${
-         arrowBorderRadius?.right
-       }px ${arrowBorderRadius?.bottom}px ${arrowBorderRadius?.left}px;
+       border-radius: ${arrowBorderRadius?.top} ${arrowBorderRadius?.right} ${
+         arrowBorderRadius?.bottom
+       } ${arrowBorderRadius?.left};
         display: flex;
         align-items: center;
         justify-content: center;
@@ -313,7 +325,7 @@ const Style = ({ attributes, id, device = "desktop" }) => {
       }
      
 
-      ${slideArrowSl} .swiper-button-next{
+      ${slideArrowSl} .swiper-button-next.swiper-button-horizontal{
         position: absolute;
         // font-size: ${arrowStyles?.arrowSize}px;
         top: 50%;
@@ -332,9 +344,9 @@ const Style = ({ attributes, id, device = "desktop" }) => {
             : "none"
         };
         border: none;
-        border-radius: ${arrowBorderRadius?.top}px ${
-          arrowBorderRadius?.right
-        }px ${arrowBorderRadius?.bottom}px ${arrowBorderRadius?.left}px;
+        border-radius: ${arrowBorderRadius?.top} ${arrowBorderRadius?.right} ${
+          arrowBorderRadius?.bottom
+        } ${arrowBorderRadius?.left};
         display: flex;
         align-items: center;
         justify-content: center;
@@ -344,8 +356,6 @@ const Style = ({ attributes, id, device = "desktop" }) => {
         // box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
       }
 
-
-       
 
 
            
@@ -363,10 +373,7 @@ const Style = ({ attributes, id, device = "desktop" }) => {
           width: ${layoutWidth.tablet};
         }
       }
-
       
-     
-
       
 
 
